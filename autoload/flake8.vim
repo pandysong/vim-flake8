@@ -109,8 +109,11 @@ function! s:Flake8()  " {{{
     " read config
     call s:Setup()
 
-    if !executable(s:flake8_cmd)
-        echoerr "File " . s:flake8_cmd . " not found. Please install it first."
+    let s:sole_cmds = split(s:flake8_cmd, '\W')
+    let s:sole_cmd = sole_cmds[0]
+
+    if !executable(sole_cmd)
+        echoerr "File " . sole_cmd . " not found. Please install it first."
         return
     endif
 
